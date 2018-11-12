@@ -32,7 +32,7 @@ router.route('/update')
      year: req.body.year
  };
  console.log(doc);
-  Expense.update({_id: req.body._id}, doc, function(err, result) {
+  Expense.updateOne({_id: req.body._id}, doc, function(err, result) {
       if (err)
         res.send(err);
       res.send('Expense successfully updated!');
@@ -41,7 +41,7 @@ router.route('/update')
 
 router.get('/delete', function(req, res){
  var id = req.query.id;
- Expense.find({_id: id}).remove().exec(function(err, expense) {
+ Expense.find({_id: id}).deleteOne().exec(function(err, expense) {
   if(err)
    res.send(err)
   res.send('Expense successfully deleted!');
